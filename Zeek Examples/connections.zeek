@@ -1,18 +1,8 @@
-global mycount:count=0;
-event connection_state_remove(c: connection)
-    {
-        if (mycount>=0)
-        {
-            print " ";
-            print " ";
-    	    print "lmao",c$id$orig_h, c$id$orig_p, c$id$resp_h, c$id$resp_p, c$orig$num_pkts, c$resp$num_pkts;
-        }
-        
-        else
-            print "lmao";
-        mycount=mycount+1;
-    }
-# event new_connection( c:connection)
-# {
-    
-# }
+# the purpose of this code is to display an example as to how connection look like. they are huge nested records of records containing information about the whole connection. this program simply prints the connection to demonstrate how it looks and wat kind of information can be retrived
+
+# global mycount:count=0;
+
+event new_connection( c:connection)
+{
+    print "new connection", c;
+}
