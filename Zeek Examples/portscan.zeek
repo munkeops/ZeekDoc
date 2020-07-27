@@ -11,7 +11,7 @@
 
 #NOTE: 
 # 1.storing info of all the ports visited and retrieving that information to check leads to heavy computation and delays, hence that idea has been kept on hold.
-# 2. ports scan can be conducted from a subnet hence deceiving and getting past the checks of this program. to solve this problem we could couple this code with the other zeek code to check subnets as shown in the example insideOut.zeek
+# 2. ports scan can be conducted from a subnet hence deceiving and getting past the checks of this program. to solve this problem we could couple this code with the other zeek code to check subnets as shown in the example insideOut.zeek. this was realised after i ran my code to test on the kitsune os scan data set.
 # 3. this may not be the best algorithm, but for now it displays the use of zeek to perform computation tasks.
 
 
