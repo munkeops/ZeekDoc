@@ -1,7 +1,13 @@
 
-# PROBLEM: portscans or os scan are used to detect the status of available ports on the device. There are various port status that can inferred depending on the tool used. In the case of this example i have used nmap to perform portscans. these can be done by attackers to maybe find and attack open links to your device.
+# PROBLEM: portscans or os scan are used to detect the status of available ports on the device. There are various port status that can inferred depending on the tool used. In the case of this example i have used nmap to perform portscans. 
+#These can be done by attackers to maybe find and attack open links to your device.
 
-#SOLUTION: using zeek , the solution described here is that we maintain a fixed size table of incoming ips to simulate the concept of a window frame. it encapsulates time as a dimension/feature for detection purposes. Basicaly a predefined set of ips are stored in the table along with info such as which ports it has already encountered and how many in total. Next every time a new connection is made it will check if it exists in these 10 ips and if so check if it is a port that this ip has already accessed before. If its been accessed before nothing happens cause it could be a large file strasnfer making mulitple connection. If its a new port the count of ports will be incremented and the port will be added to the visited ports. If in the case the ip dosent exist in the table of 10 ips, we pick the one with the lowest no of ports visited and replace that. and so if there is something like a portscan then the no. ports value for that given ip increases rapidly with every new connection. For this program i have put a cap at 100 visits, after which a message will be printed to notify the user.
+#SOLUTION: using zeek , the solution described here is that we maintain a fixed size table of incoming ips to simulate the concept of a window frame. it encapsulates time as a dimension/feature for detection purposes. 
+#Basicaly a predefined set of ips are stored in the table along with info such as which ports it has already encountered and how many in total. 
+#Next every time a new connection is made it will check if it exists in these 10 ips and if so check if it is a port that this ip has already accessed before.
+# If its been accessed before nothing happens cause it could be a large file strasnfer making mulitple connection. If its a new port the count of ports will be incremented and the port will be added to the visited ports. 
+#If in the case the ip dosent exist in the table of 10 ips, we pick the one with the lowest no of ports visited and replace that. and so if there is something like a portscan then the no. ports value for that given ip increases rapidly with every new connection. 
+#For this program i have put a cap at 100 visits, after which a message will be printed to notify the user.
 
 #NOTE: 
 # 1.storing info of all the ports visited and retrieving that information to check leads to heavy computation and delays, hence that idea has been kept on hold.
