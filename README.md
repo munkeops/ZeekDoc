@@ -3,6 +3,7 @@
 ## Zeek Architecture
 
 Zeek is single threaded, hence very often we set up a cluster mechanism where incoming traffic is split into multiple nodes.
+![Zeek Architecture](/Documentation/zeekarchitecture.png)
 
 
 ## Zeek command line tools
