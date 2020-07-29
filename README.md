@@ -1,6 +1,11 @@
 # ZeekDoc
+ 
+ <p align="center">
+  <img src=/Documentation/zeekLogo.png width=100>
+ </p>
+ 
 
-## Bro/Zeek
+## Bro/Zeek 
 
 ### What is Zeek?
 
@@ -22,7 +27,9 @@ Further useful links to know more about zeek:
 ## Zeek Architecture
 
 Zeek is single threaded, hence very often we set up a cluster mechanism where incoming traffic is split into multiple nodes.<br>
-![Zeek Architecture](/Documentation/zeekarchitecture.png)
+<p align=center>
+  <img src="/Documentation/zeekarchitecture.png">
+</p>
 
 
 ## Try Zeek Online 
