@@ -35,19 +35,54 @@ Zeek has an interactive web editor to try and learn.
 There are multiple ways to install/use zeek for analysis.
 
 
-### Linux/Mac:
-The ways i encountered during my experience were either to install the binaries provided on the zeek documentation or make it from source from the github repo.
-After following the steps as shown in the below link, either temporarily export the zeek binaries to path every time or add the export command to the bash/profile file. One way to is to add manually copy of the bin folder in zeek to the /usr/bin. This will add all the zeek binaries as system binaries.
-<br> download link : https://zeek.org/get-zeek/
-<br> src files : https://docs.zeek.org/en/current/install/install.html
-<br> Note: while installing, do not forget to use sudo when required as many of these commands require to create directories and hence require enhanced permission.
+### Linux:
+The ways i encountered during my experience were either to install the binaries provided on the zeek documentation or make it from source from the github repo. Follow the fallowing steps to install instantly:
+#### Dependencies:
+dependencies : https://docs.zeek.org/en/current/install/install.html
+##### RPM/RedHat
+install dependencies
+```
+sudo yum install cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python-devel swig zlib-devel
+```
+On RHEL/CentOS 6/7, you can install and activate a devtoolset to get access to recent GCC versions. You will also have to install and activate CMake 3. For example:
+```
+sudo yum install cmake3 devtoolset-8
+scl enable devtoolset-7 bash
+```
+##### DEB/Debian
+install all the dependencies:
+```
+sudo apt-get install cmake make gcc g++ flex bison libpcap-dev libssl-dev python-dev swig zlib1g-dev
+```
+#### Making From Source
+
+clone the repo files as below
+```
+git clone --recursive https://github.com/zeek/zeek
+```
+get into the folder and run the following commands
+```
+./configure
+make
+make install
+```
+#### Pre Built Binary Release Packages
+
+bundled source packages : https://zeek.org/get-zeek/
+latest dev versions:  https://github.com/zeek
+
+###  Post build generated
+
+After these steps, either temporarily export the zeek binaries to path every time (not recommended obviously) or add the export command to the bash/profile file. One way is to add manually copy of the bin folder in zeek to the /usr/bin. This will add all the zeek binaries as system binaries.
+```
+cp /usr/local/zeel/bin/* /usr/bin 
+```
+Note: while installing, do not forget to use sudo when required as many of these commands require to create directories and hence require enhanced permission.
 ### Windows :
 Theres no official build for windows as such, since its an open source software. One way to install it would be use the WSL/WSL2. Installation on WSL/WSL2 will follow the same procedure as the Linux way. 
 <br> Note: WSL/WSL2 commands like make/cmake run much slower and the installation might take longer than usual.
 ### Security Onion VM/OS
 Another third way that comes as a package deal with many other software that help with zeek analysis is to install the SecurityOnion Linux Distro. It comes pre installed and configured with zeek and the elastic kibana stack that can be used to perform some data visualisation. It is easily installable on vm with configuration to listen on the host. <br>Note: to run it smoothly, it is a very resource draining process hence minimum requirement would be to use it with atleast 8gb ram allocated to it. 4GB ram will work too for simple programs and learner, but 8gb is optimal for deployment.
-
-
 
 ## Zeek command line tools
 
