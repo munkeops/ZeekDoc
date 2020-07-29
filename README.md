@@ -129,9 +129,12 @@ cat conn.log |zeek-cut -d ts uid host uri < conn.log
 
 ### Zeek examples
 
+Now we shall see couple examples to support my explanation of the zeek event driven model, logging struture and other such things that will help you get started with Zeek if you already havent tried it out on their official web tutorial. 
 <p align="center">
   <img src= "/Documentation/test1.png">
 </p>
+The example shown in the image above shows three events. The init which is used as an initialisation to what the code has to do. The done event is executed when the code is terminating performing last set of commands at the end. This event can be used to do any sort of statistical analysis on data that must have been collected during the run of the script. Any other event is used to perform tasks or analyse, in this example we use the event on connection that has a parameter c which is a record ( zeek datatype similar to c structures). This record consists of various other nested records within it that hold the information of every aspect of the connection. In this example I have printed out a set of values from all of it. You can even print out the complete record which is generally very huge per connection. Further more we define a global variable of the type count( zeek datatype) that will be used to restrict and print the information only for the first 10 connections as shown by the if condition.
+
 
 ### Zeek with python
 
