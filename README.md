@@ -116,35 +116,6 @@ Another third way that comes as a package deal with many other software that hel
 Personally I do not have experience working on a mac but i will attach the offcial documentation link below:
 <br>https://docs.zeek.org/en/current/install/install.html
 
-## Zeek command line tools
-
-The zeek command must be used with various options for various purposes. Some usual commands used are as below: 
-```
-zeek -i enp0s3
-```
-```
-zeek -i enp0s8 
-```
-```
-zeek -i any
-```
-The -i helps us choose an interface. Interfaces may include the wifi, ethernet, bluetooth etc. Also VMs may have an additional source of having to listen to the host<br>
-Note : 
-<br>in all cases accessing sockets/ports info is a privileged command hence use sudo.
-<br>most common new system of labeling for internet interfaces have changed from eth0 to enp0s for linux system. To understand more view the below link -
-<br>https://unix.stackexchange.com/questions/134483/why-is-my-ethernet-interface-called-enp0s10-instead-of-eth0
-<br> zeek can also be used with pre recorded packet captures. Various tools to perform packet capture are : wireshark and tcpdump.
-
-### ZeekCut
-Zeek cut is a tool provided by zeek it is very helpful in dealing with quick manual analysis on logs. It efficiently helps you slice out information from the logs you might want to view.
-
-eg  :
-```
-cat conn.log | zeek-cut id.orig_h id.orig_p id.resp_h duration
-```
-```
-cat conn.log |zeek-cut -d ts uid host uri < conn.log
-````
 ### ZeekCTL
 
 The Zeek Control Shell is an interactive shell used to manage installations on a single system. In the examples below, $PREFIX is used to reference the Zeek installation root directory, which by default is /usr/local/zeek if you install from source.
@@ -169,6 +140,27 @@ You can leave it running for now, but to stop this Zeek instance you would do:
 <br> Follow config steps as per your choice here : https://docs.zeek.org/en/current/quickstart/index.html#managing-zeek-with-zeekcontrol
 <br> further documentation on make :https://github.com/zeek/zeekctl
 
+
+## Zeek command line tools
+
+The zeek command must be used with various options for various purposes. Some usual commands used are as below: 
+```
+zeek -i enp0s3
+```
+```
+zeek -i enp0s8 
+```
+```
+zeek -i any
+```
+The -i helps us choose an interface. Interfaces may include the wifi, ethernet, bluetooth etc. Also VMs may have an additional source of having to listen to the host<br>
+Note : 
+<br>in all cases accessing sockets/ports info is a privileged command hence use sudo.
+<br>most common new system of labeling for internet interfaces have changed from eth0 to enp0s for linux system. To understand more view the below link -
+<br>https://unix.stackexchange.com/questions/134483/why-is-my-ethernet-interface-called-enp0s10-instead-of-eth0
+<br> zeek can also be used with pre recorded packet captures. Various tools to perform packet capture are : wireshark and tcpdump.
+
+
 ### Zeek examples
 
 Now we shall see couple examples to support my explanation of the zeek event driven model, logging struture and other such things that will help you get started with Zeek if you already havent tried it out on their official web tutorial. 
@@ -176,6 +168,33 @@ Now we shall see couple examples to support my explanation of the zeek event dri
   <img src= "/Documentation/test1.png">
 </p>
 The example shown in the image above shows three events. The init which is used as an initialisation to what the code has to do. The done event is executed when the code is terminating performing last set of commands at the end. This event can be used to do any sort of statistical analysis on data that must have been collected during the run of the script. Any other event is used to perform tasks or analyse, in this example we use the event on connection that has a parameter c which is a record ( zeek datatype similar to c structures). This record consists of various other nested records within it that hold the information of every aspect of the connection. In this example I have printed out a set of values from all of it. You can even print out the complete record which is generally very huge per connection. Further more we define a global variable of the type count( zeek datatype) that will be used to restrict and print the information only for the first 10 connections as shown by the if condition.
+<p align="center">
+  <img src= "/Documentation/test1run.PNG">
+</p>
+
+Run the following code and get information on the screen as shown above.
+<br> let it run for a while and you will see logs as below:
+<p align="center">
+  <img src= "/Documentation/zeeklogs.PNG">
+</p>
+
+### ZeekCut
+Zeek cut is a tool provided by zeek it is very helpful in dealing with quick manual analysis on logs. It efficiently helps you slice out information from the logs you might want to view.
+
+eg  :
+```
+cat conn.log | zeek-cut id.orig_h id.orig_p id.resp_h duration
+```
+<p align="center">
+  <img src= "/Documentation/zeekcut.PNG">
+</p>
+
+```
+cat conn.log |zeek-cut -d ts uid host uri < conn.log
+````
+<p align="center">
+  <img src= "/Documentation/zeekcut2.PNG">
+</p>
 
 
 ### Zeek with python
