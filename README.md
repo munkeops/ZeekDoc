@@ -147,6 +147,28 @@ cat conn.log |zeek-cut -d ts uid host uri < conn.log
 ````
 ### ZeekCTL
 
+The Zeek Control Shell is an interactive shell used to manage installations on a single system. In the examples below, $PREFIX is used to reference the Zeek installation root directory, which by default is /usr/local/zeek if you install from source.
+<br>Now start the ZeekControl shell like:
+```
+zeekctl
+```
+Since this is the first-time use of the shell, perform an initial installation of the ZeekControl configuration:
+```
+[ZeekControl] > install
+```
+Then start up a Zeek instance:
+```
+[ZeekControl] > start
+```
+If there are errors while trying to start the Zeek instance, you can can view the details with the diag command. If started successfully, the Zeek instance will begin analyzing traffic according to a default policy and output the results in $PREFIX/logs. 
+<br><br>
+You can leave it running for now, but to stop this Zeek instance you would do:
+```
+[ZeekControl] > stop
+```
+<br> Follow config steps as per your choice here : https://docs.zeek.org/en/current/quickstart/index.html#managing-zeek-with-zeekcontrol
+<br> further documentation on make :https://github.com/zeek/zeekctl
+
 ### Zeek examples
 
 Now we shall see couple examples to support my explanation of the zeek event driven model, logging struture and other such things that will help you get started with Zeek if you already havent tried it out on their official web tutorial. 
