@@ -209,6 +209,10 @@ cat conn.log |zeek-cut -d ts uid host uri < conn.log
   <img src= "/Documentation/zeekcut2.PNG" >
 </p>
 
+### Zeek Events
+
+### Simple Portscan in Zeek
+
 ### Machine Learning and Cybersecurity
 
 Machine learning has become a vital technology for cybersecurity. Machine learning preemptively stamps out cyber threats and bolsters security infrastructure through pattern detection, real-time cyber crime mapping and thorough penetration testing. A subset of artificial intelligence, machine learning uses algorithms born of previous datasets and statistical analysis to make assumptions about a computer's behavior. The computer can then adjust its actions — and even perform functions for which it hasn’t been explicitly programmed.
@@ -223,6 +227,7 @@ To read more about various companies and how they tackle attacks I'd suggest thi
 Some very interesting directed usages of ml can be found here : https://www.exabeam.com/information-security/machine-learning-for-cybersecurity/
 <br>
 Another link that will be helpful to give some perspective from a firm :https://acodez.in/machine-learning-cyber-security/
+<br>
 ### Zeek with python
 
 ### ZAT
