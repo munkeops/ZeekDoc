@@ -15,7 +15,7 @@ Zeek is a network analysis and IDS tool. It is an alternative to various other t
 
 Unlike many other IDS such as Snort and Suricata, Zeek is a hybrid of both anomaly and rule based techniques. Zeek engine structure is indeed very efficient and useful as it creates incoming traffic into a series of events which can be either treated or left as is. An event could be anything like a a new connection , a new ssh connection or anything. The real power of Zeek comes with the Policy Script interpreter. This engine has its own scripting language (Bro/Zeek scripts eg anomaly.zeek) which comes with its own custom made data types and data structures tailored for the use of dealing with network data. Hence Zeek is able to give huge control and power to the user to be able to analyse the data in ways which would have proven very difficult before making it a decent choice to be used as an HIDS too. The user can now generate custom rules and notifications for any particular scenario and so doesent have to rely on predefined rules. Zeek can mimic anything that the conventional rules based IDS such as Snort and Suricata can do with the added advantage of customisability. A network activity in one subnet may be deemed illegal while not in another, this is where Zeek plays its trump card.
 <br><br>
-Now Zeek is not just merely an IDS, due to its powerful scripting nature it can be used to perform various complex tasks such as incident response, forensics, file extraction, and hashing among other capabilities. Due to its Policy engine we can provide custom scripts to performs certain operations on incoming traffic at any time. Zeek is a logging based IDS, that means it provides log files with well documented extracted data from the network activiity which can be used for forensics in the term that some activity occured. The user can also right custom scripts to log additional informations based only any sort of patterm detections etc.
+Now Zeek is not just merely an IDS, due to its powerful scripting nature it can be used to perform various complex tasks such as incident response, forensics, file extraction, and hashing among other capabilities. Due to its Policy engine we can provide custom scripts to perform certain operations on incoming traffic at any time. Zeek is a logging based IDS, that means it provides log files with well documented extraction data from the network activity which can be used for forensics in the term that some activity occured. The user can also write custom scripts to log additional computed information or specific parts of the connection based on the given script.
 <br><br>
 Further useful links to know more about zeek:
 <br>https://zeek.org/
@@ -26,10 +26,13 @@ Further useful links to know more about zeek:
 
 ## Zeek Architecture
 
-Zeek is single threaded, hence very often we set up a cluster mechanism where incoming traffic is split into multiple nodes.<br>
+Zeek is single threaded, hence very often we set up a cluster mechanism where incoming traffic is split into multiple nodes. While zeek can still be used on the personal computer with the single device config it also has a cluster configuration. The cluster devices act as worker threads and all connected to the manager that acts as an interface for the user. In large networks it is absolutely neccessary to do this as the incoming traffic is huge and broad hence need more compute power and fast accessible memory. Pattern detection becomes difficult when the incoming traffic is scattered over a large number of interleaved packets from various user requests/connections hence more the memory the better. The following diagram shows the architecture as explained above.<br>
 <p align=center>
   <img src="/Documentation/zeekarchitecture.png">
 </p>
+
+Cluster config can be done natively or using PF_RING which gives added speed to packet capturing.
+cluster config link : https://docs.zeek.org/en/current/configuration/index.html
 
 
 ## Try Zeek Online 
@@ -81,16 +84,25 @@ latest dev versions:  https://github.com/zeek
 
 ###  Post build generation (either from src or pre built binaries)
 
-After these steps, either temporarily export the zeek binaries to path every time (not recommended obviously) or add the export command to the bash/profile file. One way is to add manually copy of the bin folder in zeek to the /usr/bin. This will add all the zeek binaries as system binaries.
+After these steps, either temporarily export the zeek binaries to path every time (not recommended obviously) or add the export command to the bash/profile file so that its executed at the beginning of the bash session.
+```
+export PATH=/usr/local/zeek/bin:$PATH
+```
+Another way is to add manually a copy of the bin folder in zeek to the /usr/bin. This will add all the zeek binaries as system binaries.
 ```
 cp /usr/local/zeel/bin/* /usr/bin 
 ```
-Note: while installing, do not forget to use sudo if not in root,as many of these commands require to create directories and hence require enhanced permission.
+Note: while installing, do not forget to use sudo if not in root, as many of these commands require to create directories and hence require enhanced permission.
 ### Windows :
+
 Theres no official build for windows as such, since its an open source software. One way to install it would be use the WSL/WSL2. Installation on WSL/WSL2 will follow the same procedure as the Linux way. 
 <br> Note: WSL/WSL2 commands like make/cmake run much slower and the installation might take longer than usual.
+
 ### Security Onion VM/OS
-Another third way that comes as a package deal with many other software that help with zeek analysis is to install the SecurityOnion Linux Distro. It comes pre installed and configured with zeek and the elastic kibana stack that can be used to perform some data visualisation. It is easily installable on vm with configuration to listen on the host. <br>Note: to run it smoothly, it is a very resource draining process hence minimum requirement would be to use it with atleast 8gb ram allocated to it. 4GB ram will work too for simple programs and learner, but 8gb is optimal for deployment.
+
+Another third way that comes as a package deal with many other software that help with zeek analysis is to install the SecurityOnion Linux Distro. It comes pre installed and configured with zeek and the elastic kibana stack that can be used to perform some data visualisation. SO (Security Onion) can be installed on a vm with configuration to listen on the host, the following youtube video will help with the config and installation of the VM.
+<br>https://www.youtube.com/watch?v=jRoQUVY-2Ic
+<br>Note: to run it smoothly, it is a very resource draining process hence minimum requirement would be to use it with atleast 8gb ram allocated to it. 4GB ram will work too for simple programs at a beginner stage, but 8gb is optimal for deployment or complex programs.
 
 ### Mac :
 Personally I do not have experience working on a mac but i will attach the offcial documentation link below:
