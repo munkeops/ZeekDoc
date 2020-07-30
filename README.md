@@ -143,7 +143,7 @@ You can leave it running for now, but to stop this Zeek instance you would do:
 
 ## Zeek command line tools
 
-The zeek command must be used with various options for various purposes. Some usual commands used are as below: 
+The zeek command can be used in multiple ways. Some usual commands used are as below: 
 ```
 zeek -i enp0s3
 ```
@@ -153,13 +153,26 @@ zeek -i enp0s8
 ```
 zeek -i any
 ```
-The -i helps us choose an interface. Interfaces may include the wifi, ethernet, bluetooth etc. Also VMs may have an additional source of having to listen to the host<br>
+The -i helps us choose an interface. Interfaces may include the wifi, ethernet, bluetooth etc. Also VMs may have an additional source of having to listen to the host. The above commands then populate the current working directory with the logs. To exit the current directory use ctrl c.<br>
 Note : 
 <br>in all cases accessing sockets/ports info is a privileged command hence use sudo.
 <br>most common new system of labeling for internet interfaces have changed from eth0 to enp0s for linux system. To understand more view the below link -
 <br>https://unix.stackexchange.com/questions/134483/why-is-my-ethernet-interface-called-enp0s10-instead-of-eth0
-<br> zeek can also be used with pre recorded packet captures. Various tools to perform packet capture are : wireshark and tcpdump.
-
+<br> zeek can also be used with pre recorded packet captures. Various tools to perform packet capture are : wireshark and tcpdump. the following example stores live network data into mypackets.trace
+```
+sudo tcpdump -i en0 -s 0 -w mypackets.trace
+```
+where en0 is the interface.
+```
+zeek -r mypackets.trace
+```
+This command will do the same as running it on and interface and fill the current directory with the logs.
+<br><br>
+Now to run custom scripts on the current interface use:
+```
+zeek <options> <scripts...>
+```
+To see how its use follow to the next section.
 
 ### Zeek examples
 
@@ -193,10 +206,23 @@ cat conn.log | zeek-cut id.orig_h id.orig_p id.resp_h duration
 cat conn.log |zeek-cut -d ts uid host uri < conn.log
 ````
 <p align="center">
-  <img src= "/Documentation/zeekcut2.PNG">
+  <img src= "/Documentation/zeekcut2.PNG" >
 </p>
 
+### Machine Learning and Cybersecurity
 
+Machine learning has become a vital technology for cybersecurity. Machine learning preemptively stamps out cyber threats and bolsters security infrastructure through pattern detection, real-time cyber crime mapping and thorough penetration testing. A subset of artificial intelligence, machine learning uses algorithms born of previous datasets and statistical analysis to make assumptions about a computer's behavior. The computer can then adjust its actions — and even perform functions for which it hasn’t been explicitly programmed.
+<br><br>
+And it's been a boon to cybersecurity. With its ability to sort through millions of files and identify potentially hazardous ones, machine learning is increasingly being used to uncover threats and automatically squash them before they can wreak havoc. Machine learning algorithms come in many shapes and forms, but most of them perform one of three tasks:
+<p align="center">
+  <img src="/Documentation/mlAndCybersec.PNG" width=600>
+</p>
+<br>
+To read more about various companies and how they tackle attacks I'd suggest this article : https://builtin.com/artificial-intelligence/machine-learning-cybersecurity
+<br>
+Some very interesting directed usages of ml can be found here : https://www.exabeam.com/information-security/machine-learning-for-cybersecurity/
+<br>
+Another link that will be helpful to give some perspective from a firm :https://acodez.in/machine-learning-cyber-security/
 ### Zeek with python
 
 ### ZAT
