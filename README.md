@@ -228,6 +228,21 @@ Some very interesting directed usages of ml can be found here : https://www.exab
 <br>
 Another link that will be helpful to give some perspective from a firm :https://acodez.in/machine-learning-cyber-security/
 <br>
-### Zeek with python
+
+### Zeek with Python
+
+Although Zeek is a scripting language itself often we will want to use it with python to perform as said above tasks like machine learning. Zeek scripts are used to perform lightweight computation on the go cause it needs to work at the speed of the incoming network at most times, while also performing resource draining tasks such as logging. Hence to perform heavy algorithms and data crunching tasks such as machine learning we will use python, which is loaded with tons of packages to perform such tasks.
+<br><br>
+The manual way of runnning these scripts on the logs would be to file read the logs and then use them in any given format. That turn out to be very annoying as logs have lot of meta data along side and hence reading the particular data is quite painful. Hence instead an alternative it to use the tool ZeekCut as mentioned above to extract the specific info you want and write it to a csv file. Why this is helpful is because then we can use the pandas package to read csv files into dataframes very easily. While this is better than the previous option obviously, its quite a pain by itself yet. This is where a new python package -ZAT made by open source developers specifically for Zeek comes into the picture.
 
 ### ZAT
+
+Stands for Zeek Analysis Tools, developed by a company called SuperCowPowers which contribute to open source python community. This packages repo on github provides tons of functionality and modules all which can be used to integrate zeek with python much easier than ever. They have created several functions that help us read, execute, write into various data forms of zeek logs. 
+<br><br>
+A fitting example would be to address our earlier problem. This package has devloped functions that can efficiently read zeek logs into dataframes or matrices in one go. Hence no more fumbling around extracting header data and log data from the zeek logs. A simple tool that cuts down on tons of effort. Apart from that they have developed many more tools to perform integration with various other tools and packages such as : scikit learn , matplotlib, kafka etc. They also have provided a vast variety of examples to demonstrate the usage of zeek and with baby steps into usage of the log data with the above mentioned packages and data.
+<br>br>
+link : https://github.com/SuperCowPowers/zat
+
+### Finally 
+Theres a large and diverse open source community contributing to scripts and various other new things. While it may be relatively new it has lot more people joining and contributing every single day. To see this growth and find out more please visit the zeeks github with around 50 repositories, you can visit and explore any sub topic to your liking.
+<br> Zeek : https://github.com/zeek
